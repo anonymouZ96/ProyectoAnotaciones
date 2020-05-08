@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+    default-init-method="init">
+
+    <!-- <context:annotation-config/> -->
+
+    <context:component-scan base-package="com.anotaciones"/>    <!-- Esto incluye la etiqueta anterior -->
+
+    <!-- <bean id="peliculaDAOMemory" class="com.anotaciones.PeliculaDAOImplMemory"/> init-method="init"/> -->
+    <!-- Para este bean utilizaremos la anotación @Component en la misma clase, realizará la misma función
+    que si declarasemos este bean, reduciendo así la verbosidad en el XML -->
+
+    <bean id="peliculaService" class="com.anotaciones.PeliculaService"/>
+    <!-- Se le inyecta a través de anotación -->
+
+    <bean id="catalogoClasicas" class="com.anotaciones.CatalogoPeliculasClasicas">
+        <qualifier type="Epoca" value="clasicas"/>
+    </bean>
+
+    <bean id="catalogoActuales" class="com.anotaciones.CatalogoPeliculasActuales">
+        <qualifier type="Epoca" value="actuales"/>
+    </bean>
+
+</beans>
